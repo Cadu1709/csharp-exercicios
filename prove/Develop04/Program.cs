@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 
 class MindfulnessActivity
 {
     protected static Dictionary<string, int> activityCounts = new Dictionary<string, int>();
-    
+
     protected string activityName;
     protected string description;
     protected HashSet<string> usedPrompts = new HashSet<string>();
@@ -22,7 +21,7 @@ class MindfulnessActivity
     public virtual void StartActivity(int duration)
     {
         ShowStartingMessage();
-        Pause(3);  // Pause for preparation
+        Pause(3); // Pause for preparation
         PerformActivity(duration);
         ShowEndingMessage(duration);
         LogActivityCount();
@@ -66,9 +65,9 @@ class MindfulnessActivity
 
 class BreathingActivity : MindfulnessActivity
 {
-    public BreathingActivity() : base("Breathing", "Deep breathing exercise") { }
+    public  BreathingActivity() : base("Breathing", "Deep breathing exercise") { }
 
-    public override void PerformActivity(int duration)
+    protected override void PerformActivity(int duration)
     {
         int breathsPerMinute = 12;  // Adjust as needed
         int breathDuration = 60 / breathsPerMinute;
@@ -99,9 +98,9 @@ class BreathingActivity : MindfulnessActivity
 
 class VisualizationActivity : MindfulnessActivity
 {
-    public VisualizationActivity() : base("Visualization", "Imaginary visualization activity") { }
+    public  VisualizationActivity() : base("Visualization", "Imaginary visualization activity") { }
 
-    public override void PerformActivity(int duration)
+    protected override void PerformActivity(int duration)
     {
         Console.WriteLine("Imagine a peaceful place...");
         for (int i = 1; i <= duration; i++)
@@ -128,9 +127,9 @@ class ReflectionActivity : MindfulnessActivity
         // Add more questions as needed
     };
 
-    public ReflectionActivity() : base("Reflection", "Reflect on past experiences") { }
+   public  ReflectionActivity() : base("Reflection", "Reflect on past experiences") { }
 
-    public override void PerformActivity(int duration)
+    protected override void PerformActivity(int duration)
     {
         string prompt = GetRandomPrompt();
         Console.WriteLine(prompt);
@@ -167,9 +166,9 @@ class ListingActivity : MindfulnessActivity
         // Add more prompts as needed
     };
 
-    public ListingActivity() : base("Listing", "List positive things in your life") { }
+   public  ListingActivity() : base("Listing", "List positive things in your life") { }
 
-    public override void PerformActivity(int duration)
+   protected  override void PerformActivity(int duration)
     {
         string prompt = GetRandomPrompt();
         Console.WriteLine(prompt);
@@ -182,7 +181,7 @@ class ListingActivity : MindfulnessActivity
         {
             Console.Write("Enter an item (or 'done' to finish): ");
             string item = Console.ReadLine();
-            
+
             if (item.ToLower() == "done")
                 break;
 
